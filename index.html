@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شخصی‌سازی ستون‌ها</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+        <div class="modal-container">
+        <div class="modal-header">
+            <h3>شخصی‌سازی ستون‌های جدول</h3>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-content">
+            <div class="column-box">
+                <label>موجود</label>
+                <div class="list-container" id="available-list">
+                    <ul>
+                        <li data-title="قابلیت‌های مدیریت سرویس" data-width="20" data-align="راست" data-sort="نزولی">قابلیت‌های مدیریت سرویس</li>
+                        <li data-title="امکانات عمومی" data-width="20" data-align="راست" data-sort="نزولی">امکانات عمومی</li>
+                        <li data-title="پیکربندی و اختصاصی‌سازی" data-width="20" data-align="راست" data-sort="نزولی">پیکربندی و اختصاصی‌سازی</li>
+                        <li data-title="گزارشات" data-width="30" data-align="وسط" data-sort="صعودی">گزارشات</li>
+                        <li data-title="اطلاعات کاربر" data-width="15" data-align="راست" data-sort="نزولی">اطلاعات کاربر</li>
+                        <li data-title="تاریخ ایجاد" data-width="25" data-align="چپ" data-sort="صعودی">تاریخ ایجاد</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="transfer-buttons">
+                <button id="transfer-to-selected">&gt;</button>
+                <button id="transfer-to-available">&lt;</button>
+            </div>
+
+            <div class="selected-area-wrapper">
+                 <div class="column-box">
+                    <label>انتخاب شده</label>
+                    <div class="list-container" id="selected-list">
+                        <ul></ul>
+                    </div>
+                </div>
+                <div class="order-buttons">
+                    <button id="move-up">▲</button>
+                    <button id="move-down">▼</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="footer-controls">
+                <div class="control-group">
+                    <label for="col-title">عنوان ستون</label>
+                    <input type="text" id="col-title">
+                </div>
+                <div class="control-group">
+                    <label for="col-width">عرض ستون</label>
+                    <input type="number" id="col-width" value="20">
+                </div>
+                <div class="control-group">
+                    <label for="sort-select">مرتب سازی</label>
+                    <select id="sort-select">
+                        <option>نزولی</option>
+                        <option>صعودی</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="align-select">تراز</label>
+                    <select id="align-select">
+                        <option>راست</option>
+                        <option>وسط</option>
+                        <option>چپ</option>
+                    </select>
+                </div>
+            </div>
+            <div class="footer-buttons">
+                <button class="btn-secondary close-btn">بستن</button>
+                <button class="btn-primary" id="confirm-btn">تایید</button>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            font-family: 'Vazirmatn', sans-serif;
+            color: #333;
+            direction: rtl;
+        }
+
+        /* Modal Container */
+        .modal-container {
+            width: 700px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+        }
+
+        /* Modal Header */
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .modal-header h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        /* Modal Content Area */
+        .modal-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            gap: 15px;
+        }
+
+        .column-box {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: 100%;
+        }
+        .column-box label {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .list-container {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 200px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            width: 266px;
+        }
+        .list-container ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .list-container li {
+            padding: 8px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        .list-container li:last-child {
+            border-bottom: none;
+        }
+        .list-container li:hover {
+            background-color: #f0f0f0;
+        }
+        .list-container li.active {
+            background-color: #e0eafc;
+            border-right: 3px solid #3b82f6;
+            font-weight: bold;
+        }
+
+        /* Transfer and Order Buttons */
+        .transfer-buttons, .order-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .transfer-buttons button, .order-buttons button {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #555;
+            width: 40px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .order-buttons button {
+            font-size: 12px;
+        }
+
+        /* استایل برای دکمه های غیرفعال */
+        .transfer-buttons button:disabled, .order-buttons button:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* Wrapper for the selected list and its order buttons */
+        .selected-area-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-grow: 1;
+        }
+
+        /* Modal Footer */
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #f7f7f7;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .control-group label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        .control-group input,
+        .control-group select {
+            padding: 6px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: #fff;
+        }
+        .control-group input[type="number"] {
+            width: 50px;
+        }
+
+        .footer-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .footer-buttons button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .btn-primary {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .btn-secondary {
+            background-color: #e5e7eb;
+            color: #374151;
+            border: 1px solid #ccc;
+        }

@@ -1,4 +1,5 @@
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Element Selections ---
             const availableList = document.querySelector('#available-list ul');
             const selectedList = document.querySelector('#selected-list ul');
 
@@ -14,33 +15,39 @@
             const sortSelect = document.getElementById('sort-select');
             const alignSelect = document.getElementById('align-select');
             const footerControls = document.querySelector('.footer-controls');
-          const manageActiveState = (item) => {
+            
+            // === JAVASCRIPT MODIFIED ===
+            const applyItemChangesBtn = document.getElementById('apply-item-changes-btn');
 
-    document.querySelectorAll('.list-container li').forEach(li => li.classList.remove('active'));
-    transferToSelectedBtn.disabled = true;
-    transferToAvailableBtn.disabled = true;
-    moveUpBtn.disabled = true;
-    moveDownBtn.disabled = true;
-    footerControls.classList.add('disabled');
-    document.querySelectorAll('#col-title, #col-width, #sort-select, #align-select').forEach(el => el.disabled = true);
-    
-    clearForm();
+            // --- Functions ---
 
-    if (item) {
-        item.classList.add('active');
-        if (availableList.contains(item)) {
-            transferToSelectedBtn.disabled = false;
-        } else if (selectedList.contains(item)) {
-            transferToAvailableBtn.disabled = false;
-            moveUpBtn.disabled = false;
-            moveDownBtn.disabled = false;
-            footerControls.classList.remove('disabled');
-            document.querySelectorAll('#col-title, #col-width, #sort-select, #align-select').forEach(el => el.disabled = false);
+            const manageActiveState = (item) => {
+                document.querySelectorAll('.list-container li').forEach(li => li.classList.remove('active'));
+                
+                transferToSelectedBtn.disabled = true;
+                transferToAvailableBtn.disabled = true;
+                moveUpBtn.disabled = true;
+                moveDownBtn.disabled = true;
+                
+                footerControls.classList.add('disabled');
+                
+                clearForm();
 
-            updateForm(item);
-        }
-    }
-};
+                if (item) {
+                    item.classList.add('active');
+                    if (availableList.contains(item)) {
+                        transferToSelectedBtn.disabled = false;
+                    } else if (selectedList.contains(item)) {
+                        transferToAvailableBtn.disabled = false;
+                        moveUpBtn.disabled = false;
+                        moveDownBtn.disabled = false;
+                        
+                        footerControls.classList.remove('disabled');
+                        updateForm(item);
+                    }
+                }
+            };
+
             const updateForm = (item) => {
                 colTitleInput.value = item.dataset.title;
                 colWidthInput.value = item.dataset.width;
@@ -65,6 +72,8 @@
                 activeItem.dataset.sort = sortSelect.value;
                 activeItem.dataset.align = alignSelect.value;
             };
+            
+            // --- Event Listeners ---
             document.querySelector('.modal-container').addEventListener('click', (e) => {
                 if (e.target.tagName === 'LI') {
                     manageActiveState(e.target);
@@ -75,7 +84,7 @@
                 const activeItem = availableList.querySelector('li.active');
                 if (activeItem) {
                     selectedList.appendChild(activeItem);
-                    manageActiveState(activeItem); 
+                    manageActiveState(activeItem);
                 }
             });
 
@@ -83,11 +92,10 @@
                 const activeItem = selectedList.querySelector('li.active');
                 if (activeItem) {
                     availableList.appendChild(activeItem);
-                    manageActiveState(activeItem); 
+                    manageActiveState(activeItem);
                 }
             });
             
-
             moveUpBtn.addEventListener('click', () => {
                 const activeItem = selectedList.querySelector('li.active');
                 if (activeItem && activeItem.previousElementSibling) {
@@ -101,11 +109,21 @@
                     selectedList.insertBefore(activeItem.nextElementSibling, activeItem);
                 }
             });
-
-            colTitleInput.addEventListener('input', updateItemFromForm);
-            colWidthInput.addEventListener('input', updateItemFromForm);
-            sortSelect.addEventListener('change', updateItemFromForm);
-            alignSelect.addEventListener('change', updateItemFromForm);
+            
+            // === JAVASCRIPT MODIFIED ===
+            // Event listener for the new "Apply Changes" button
+            applyItemChangesBtn.addEventListener('click', () => {
+                updateItemFromForm();
+                // Optional: Give user feedback
+                const activeItem = selectedList.querySelector('li.active');
+                if(activeItem) {
+                    activeItem.style.transition = 'background-color 0.1s ease-in-out';
+                    activeItem.style.backgroundColor = '#d1e7dd'; // A light green success color
+                    setTimeout(() => {
+                        activeItem.style.backgroundColor = ''; // Revert to default active color
+                    }, 500);
+                }
+            });
 
             confirmBtn.addEventListener('click', () => {
                 const selectedItems = [];
@@ -120,13 +138,14 @@
                 console.log("تنظیمات ستون‌های نهایی:", JSON.stringify(selectedItems, null, 2));
                 alert('تنظیمات در کنسول مرورگر (F12) ثبت شد.');
             });
-
+            
             closeBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     console.log('پنجره بسته شد.');
                     document.querySelector('.modal-container').style.display = 'none';
                 });
             });
-
+            
+            // Initial State
             manageActiveState(null);
         });
